@@ -33,7 +33,6 @@ namespace SubsPleaseBot.Services
         public async Task StartAsync()
         {
             _services.GetRequiredService<LoggingService>();
-            _services.GetRequiredService<SubsPleaseRSSFeedService>();
 
             _logger.LogTrace("Hewwo?");
 
@@ -47,6 +46,7 @@ namespace SubsPleaseBot.Services
             await _discord.StartAsync();
             await _discord.SetGameAsync($"{_config.GetValue<string>("Prefix")}help", type: ActivityType.Listening);
 
+            await _services.GetRequiredService<SubsPleaseRSSFeedService>().AddToUniqueAsync();
             await _commandHandler.InitializeAsync();
         }
     }
