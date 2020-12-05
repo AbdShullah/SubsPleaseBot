@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using SubsPleaseBot.Embeds;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using SubsPleaseBot.Embeds;
 
 namespace SubsPleaseBot.Services
 {

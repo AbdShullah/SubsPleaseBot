@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.Net;
-using SubsPleaseBot.Embeds;
-using SubsPleaseBot.Results;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using SubsPleaseBot.Embeds;
+using SubsPleaseBot.Results;
 
 namespace SubsPleaseBot.Modules
 {

@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
-using Serilog.Filters;
 using Serilog.Sinks.SystemConsole.Themes;
 
 namespace SubsPleaseBot.Services
@@ -32,10 +31,10 @@ namespace SubsPleaseBot.Services
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Logger(l => l
                     .WriteTo.Console(theme: AnsiConsoleTheme.Code, restrictedToMinimumLevel: config.GetValue<LogEventLevel>("ConsoleLogLevel"))
-                    .WriteTo.File("logs/log.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: config.GetValue<LogEventLevel>("FileLogLevel"), outputTemplate: outputTemplate)
-                    .Enrich.FromLogContext()
-                    .MinimumLevel.Is(LogEventLevel.Verbose)
-                    .MinimumLevel.Override("Microsoft", LogEventLevel.Warning))
+                    .WriteTo.File("logs/log.log", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: config.GetValue<LogEventLevel>("FileLogLevel"), outputTemplate: outputTemplate))
+                 .Enrich.FromLogContext()
+                 .MinimumLevel.Is(LogEventLevel.Verbose)
+                 .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                 .CreateLogger();
         }
 

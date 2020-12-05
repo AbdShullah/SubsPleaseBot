@@ -33,6 +33,9 @@ namespace SubsPleaseBot.Services
         public async Task StartAsync()
         {
             _services.GetRequiredService<LoggingService>();
+            _services.GetRequiredService<SubsPleaseRSSFeedService>();
+
+            _logger.LogTrace("Hewwo?");
 
             string token = _config.GetValue<string>("DiscordToken");
             if (string.IsNullOrWhiteSpace(token))

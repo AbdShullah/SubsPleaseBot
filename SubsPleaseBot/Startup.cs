@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using SubsPleaseBot.Data;
-using SubsPleaseBot.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using SubsPleaseBot.Data;
+using SubsPleaseBot.Services;
 
 namespace SubsPleaseBot
 {
@@ -48,6 +48,7 @@ namespace SubsPleaseBot
                 .AddSingleton<StartupService>()
                 .AddSingleton<CommandService>()
                 .AddSingleton<CommandHandlingService>()
+                .AddSingleton<SubsPleaseRSSFeedService>()
                 .AddSingleton<LoggingService>()
                 .AddDbContext<BotContext>(options => options.UseSqlite(config.GetValue<string>("DbConnectionString")))
                 // Transients

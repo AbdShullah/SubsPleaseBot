@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.ServiceModel.Syndication;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Xml;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using SubsPleaseBot.Data.Models;
 
 namespace SubsPleaseBot.Services
 {
@@ -23,14 +25,53 @@ namespace SubsPleaseBot.Services
         {
             _config = config;
             _logger = logger;
-            _timer = new Timer(TimeSpan.FromMinutes(_config.GetValue<int>("TimerInterval")).TotalMilliseconds);
+            _timer = new Timer(TimeSpan.FromSeconds(_config.GetValue<int>("TimerInterval")).TotalMilliseconds);
             _timer.Elapsed += OnElapsed;
             _timer.Start();
         }
 
-        private void OnElapsed(object sender, ElapsedEventArgs e)
+        private async void OnElapsed(object sender, ElapsedEventArgs e)
         {
-            throw new NotImplementedException();
+            await ReadRssAsync(Resolution.FullHD);
+        }
+
+        private async Task<IReadOnlyCollection<SubsPleaseRssItem>> ReadRssAsync(Resolution resolution)
+        {
+            string url = resolution switch
+            {
+                Resolution.FullHD => rssUrl1080,
+                Resolution.HD => rssUrl720,
+                Resolution.SD => rssUrlSd,
+                _ => throw new NotImplementedException(),
+            };
+            var xmlReader = XmlReader.Create(url);
+            var feed = SyndicationFeed.Load(xmlReader);
+            xmlReader.Close();
+
+            var list = new List<SubsPleaseRssItem>(50);
+
+            foreach (var item in feed.Items)
+            {
+                string[] x = item.Title.Text.Split(" - ");
+                string[] y = string.Join(" - ", x.Take(x.Length - 1)).Split(' ');
+                int episode = int.Parse(x[^1].Split()[0]);
+                int season = 1;
+                string z = y[^1];
+                string title;
+                if (z.Length == 2 && z[0] == 'S' && char.IsDigit(z[1]))
+                {
+                    season = int.Parse(z[1].ToString());
+                    title = string.Join(' ', y.Skip(1).Take(y.Length - 2));
+                }
+                else
+                {
+                    title = string.Join(' ', y.Skip(1).Take(y.Length - 1));
+                }
+                string size = item.ElementExtensions.FirstOrDefault(ext => ext.OuterName == "size").GetObject<string>();
+
+                list.Add(new(title, season, episode, resolution, item.Links.FirstOrDefault()?.Uri.ToString(), item.PublishDate, size));
+            }
+            return await Task.FromResult(list.AsReadOnly());
         }
     }
 }
