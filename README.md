@@ -1,8 +1,8 @@
-[![CodeFactor](https://www.codefactor.io/repository/github/abdshullah/discordbottemplatev2/badge)](https://www.codefactor.io/repository/github/abdshullah/discordbottemplatev2)
-![Last commit](https://img.shields.io/github/last-commit/AbdShullah/DiscordBotTemplateV2)
+[![CodeFactor](https://www.codefactor.io/repository/github/abdshullah/subspleasebot/badge)](https://www.codefactor.io/repository/github/abdshullah/subspleasebot)
+![Last commit](https://img.shields.io/github/last-commit/AbdShullah/SubsPleaseBot)
 
-# DiscordBotTemplateV2
-A feature-rich, easy to use Discord Bot template written in C#
+# SubsPleaseBot
+A feature-rich, easy to use Discord Bot written in C#
 
 ### Dependiencies
   * [Discord.Net](https://github.com/discord-net/Discord.Net)  
