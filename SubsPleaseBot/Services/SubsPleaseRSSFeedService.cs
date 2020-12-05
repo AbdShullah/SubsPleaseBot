@@ -17,6 +17,9 @@ namespace SubsPleaseBot.Services
         private readonly ILogger<SubsPleaseRSSFeedService> _logger;
         private readonly Timer _timer;
 
+        private readonly HashSet<string> unique = new HashSet<string>(50);
+        private readonly object uniqueLock = new object();
+
         private const string rssUrl1080 = "https://subsplease.org/rss/?t&r=1080";
         private const string rssUrl720 = "https://subsplease.org/rss/?t&r=720";
         private const string rssUrlSd = "https://subsplease.org/rss/?t&r=sd";
@@ -33,6 +36,15 @@ namespace SubsPleaseBot.Services
         private async void OnElapsed(object sender, ElapsedEventArgs e)
         {
             await ReadRssAsync(Resolution.FullHD);
+        }
+
+        public async Task AddToUniqueAsync()
+        {
+            var x = ReadRssAsync(Resolution.FullHD);
+            var y = ReadRssAsync(Resolution.HD);
+            var z = ReadRssAsync(Resolution.SD);
+
+            await Task.WhenAll(x, y, z);
         }
 
         private async Task<IReadOnlyCollection<SubsPleaseRssItem>> ReadRssAsync(Resolution resolution)
@@ -68,10 +80,18 @@ namespace SubsPleaseBot.Services
                     title = string.Join(' ', y.Skip(1).Take(y.Length - 1));
                 }
                 string size = item.ElementExtensions.FirstOrDefault(ext => ext.OuterName == "size").GetObject<string>();
-
-                list.Add(new(title, season, episode, resolution, item.Links.FirstOrDefault()?.Uri.ToString(), item.PublishDate, size));
+                list.Add(new(title, season, episode, resolution, item.Links.FirstOrDefault()?.Uri.ToString(), item.PublishDate, size, item.Id));
             }
-            return await Task.FromResult(list.AsReadOnly());
+            List<SubsPleaseRssItem> result;
+            lock (uniqueLock)
+            {
+                result = list.Where(x => !unique.Contains(x.Id)).ToList();
+                result.ForEach((e) =>
+                {
+                    unique.Add(e.Id);
+                });
+            }
+            return await Task.FromResult(result.AsReadOnly());
         }
     }
 }
