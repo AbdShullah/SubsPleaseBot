@@ -3,14 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordBotTemplateV2", "DiscordBotTemplateV2\DiscordBotTemplateV2.csproj", "{AE9CD076-6896-44F4-B5BC-AC6C99AAC7AE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordBotTemplateV2.Data", "DiscordBotTemplateV2.Data\DiscordBotTemplateV2.Data.csproj", "{E5165D23-E856-4E09-87C0-BFF14B21B385}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C623878-90B5-4B35-AE42-85F415F932E2}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubsPleaseBot", "SubsPleaseBot\SubsPleaseBot.csproj", "{245DCAB6-1CB2-4F59-BBEE-8EED83312A99}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubsPleaseBot.Data", "SubsPleaseBot.Data\SubsPleaseBot.Data.csproj", "{BD680076-F3F3-43AA-A38D-9CE975054CD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,14 +18,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AE9CD076-6896-44F4-B5BC-AC6C99AAC7AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE9CD076-6896-44F4-B5BC-AC6C99AAC7AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE9CD076-6896-44F4-B5BC-AC6C99AAC7AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE9CD076-6896-44F4-B5BC-AC6C99AAC7AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E5165D23-E856-4E09-87C0-BFF14B21B385}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E5165D23-E856-4E09-87C0-BFF14B21B385}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E5165D23-E856-4E09-87C0-BFF14B21B385}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E5165D23-E856-4E09-87C0-BFF14B21B385}.Release|Any CPU.Build.0 = Release|Any CPU
+		{245DCAB6-1CB2-4F59-BBEE-8EED83312A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{245DCAB6-1CB2-4F59-BBEE-8EED83312A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{245DCAB6-1CB2-4F59-BBEE-8EED83312A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{245DCAB6-1CB2-4F59-BBEE-8EED83312A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD680076-F3F3-43AA-A38D-9CE975054CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD680076-F3F3-43AA-A38D-9CE975054CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD680076-F3F3-43AA-A38D-9CE975054CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD680076-F3F3-43AA-A38D-9CE975054CD9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
