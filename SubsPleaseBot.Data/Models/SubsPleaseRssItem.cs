@@ -4,7 +4,7 @@ namespace SubsPleaseBot.Data.Models
 {
     public class SubsPleaseRssItem
     {
-        public SubsPleaseRssItem(string title, int season, int episode, Resolution resolution, string link, DateTimeOffset publishDate, string size)
+        public SubsPleaseRssItem(string title, int season, int episode, Resolution resolution, string link, DateTimeOffset publishDate, string size, string id)
         {
             Title = title;
             Season = season;
@@ -13,6 +13,7 @@ namespace SubsPleaseBot.Data.Models
             Link = link;
             PublishDate = publishDate;
             Size = size;
+            Id = id;
         }
 
         public string Title { get; }
@@ -23,6 +24,7 @@ namespace SubsPleaseBot.Data.Models
         public string Link { get; }
         public DateTimeOffset PublishDate { get; }
         public string Size { get; }
+        public string Id { get; }
     }
 
     public enum Resolution
