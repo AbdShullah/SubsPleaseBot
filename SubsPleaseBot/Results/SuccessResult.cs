@@ -1,6 +1,6 @@
 ﻿using Discord.Commands;
 
-namespace DiscordBotTemplateV2.Results
+namespace SubsPleaseBot.Results
 {
     public class SuccessResult : RuntimeResult
     {

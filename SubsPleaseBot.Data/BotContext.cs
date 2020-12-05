@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace DiscordBotTemplateV2.Data
+namespace SubsPleaseBot.Data
 {
     public class BotContext : DbContext
     {

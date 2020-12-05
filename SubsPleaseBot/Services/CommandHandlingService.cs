@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DiscordBotTemplateV2.Embeds;
+using SubsPleaseBot.Embeds;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace DiscordBotTemplateV2.Services
+namespace SubsPleaseBot.Services
 {
     public class CommandHandlingService
     {

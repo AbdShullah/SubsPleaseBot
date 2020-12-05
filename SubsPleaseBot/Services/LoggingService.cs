@@ -9,7 +9,7 @@ using Serilog.Events;
 using Serilog.Filters;
 using Serilog.Sinks.SystemConsole.Themes;
 
-namespace DiscordBotTemplateV2.Services
+namespace SubsPleaseBot.Services
 {
     public class LoggingService
     {

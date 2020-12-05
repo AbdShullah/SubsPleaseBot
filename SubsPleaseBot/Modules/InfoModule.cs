@@ -3,12 +3,12 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.Net;
-using DiscordBotTemplateV2.Embeds;
-using DiscordBotTemplateV2.Results;
+using SubsPleaseBot.Embeds;
+using SubsPleaseBot.Results;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace DiscordBotTemplateV2.Modules
+namespace SubsPleaseBot.Modules
 {
     [Name("Informations")]
     [Summary("Useful informations about bot")]

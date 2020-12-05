@@ -1,7 +1,7 @@
 ﻿using Discord;
 using Discord.Commands;
 
-namespace DiscordBotTemplateV2.Embeds
+namespace SubsPleaseBot.Embeds
 {
     public class CommandEmbed : EmbedBuilder
     {

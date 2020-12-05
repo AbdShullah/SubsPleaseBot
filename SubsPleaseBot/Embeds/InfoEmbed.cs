@@ -1,7 +1,7 @@
 ﻿using Discord;
 using Discord.Rest;
 
-namespace DiscordBotTemplateV2.Embeds
+namespace SubsPleaseBot.Embeds
 {
     public class InfoEmbed : EmbedBuilder
     {

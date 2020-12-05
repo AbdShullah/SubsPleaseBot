@@ -5,4 +5,4 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Reliability", "CA2000", Scope = "member", Target = "~M:DiscordBotTemplateV2.Startup.ConfigureServices~Microsoft.Extensions.DependencyInjection.ServiceProvider")]
+[assembly: SuppressMessage("Reliability", "CA2000", Scope = "member", Target = "~M:SubsPleaseBot.Startup.ConfigureServices~Microsoft.Extensions.DependencyInjection.ServiceProvider")]

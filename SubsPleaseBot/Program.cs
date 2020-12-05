@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace DiscordBotTemplateV2
+namespace SubsPleaseBot
 {
     internal class Program
     {

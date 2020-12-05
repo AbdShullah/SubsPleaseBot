@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace DiscordBotTemplateV2.Data
+namespace SubsPleaseBot.Data
 {
     public class BotContextFactory : IDesignTimeDbContextFactory<BotContext>
     {

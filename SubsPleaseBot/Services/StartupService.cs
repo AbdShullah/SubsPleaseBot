@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace DiscordBotTemplateV2.Services
+namespace SubsPleaseBot.Services
 {
     public class StartupService
     {

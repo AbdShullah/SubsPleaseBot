@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using DiscordBotTemplateV2.Data;
-using DiscordBotTemplateV2.Services;
+using SubsPleaseBot.Data;
+using SubsPleaseBot.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
-namespace DiscordBotTemplateV2
+namespace SubsPleaseBot
 {
     internal class Startup
     {

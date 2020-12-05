@@ -1,6 +1,6 @@
 ﻿using Discord;
 
-namespace DiscordBotTemplateV2.Embeds
+namespace SubsPleaseBot.Embeds
 {
     public static class EmbedColors
     {
