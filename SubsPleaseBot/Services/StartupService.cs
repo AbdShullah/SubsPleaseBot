@@ -34,8 +34,6 @@ namespace SubsPleaseBot.Services
         {
             _services.GetRequiredService<LoggingService>();
 
-            _logger.LogTrace("Hewwo?");
-
             string token = _config.GetValue<string>("DiscordToken");
             if (string.IsNullOrWhiteSpace(token))
             {
@@ -46,7 +44,7 @@ namespace SubsPleaseBot.Services
             await _discord.StartAsync();
             await _discord.SetGameAsync($"{_config.GetValue<string>("Prefix")}help", type: ActivityType.Listening);
 
-            await _services.GetRequiredService<SubsPleaseRSSFeedService>().AddToUniqueAsync();
+            _services.GetRequiredService<SubsPleaseRSSFeedService>().AddToUniqueAsync();
             await _commandHandler.InitializeAsync();
         }
     }

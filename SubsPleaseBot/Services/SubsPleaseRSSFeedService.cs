@@ -17,6 +17,8 @@ namespace SubsPleaseBot.Services
         private readonly ILogger<SubsPleaseRSSFeedService> _logger;
         private readonly Timer _timer;
 
+        public IReadOnlyCollection<SubsPleaseRssItem> RSSFeed { get; private set; } = new List<SubsPleaseRssItem>().AsReadOnly();
+
         private readonly HashSet<string> unique = new HashSet<string>(50);
         private readonly object uniqueLock = new object();
 
@@ -33,21 +35,22 @@ namespace SubsPleaseBot.Services
             _timer.Start();
         }
 
-        private async void OnElapsed(object sender, ElapsedEventArgs e)
+        private void OnElapsed(object sender, ElapsedEventArgs e)
         {
-            await ReadRssAsync(Resolution.FullHD);
+            RSSFeed = ReadRss(Resolution.FullHD);
         }
 
-        public async Task AddToUniqueAsync()
+        public void AddToUniqueAsync()
         {
-            var x = ReadRssAsync(Resolution.FullHD);
-            var y = ReadRssAsync(Resolution.HD);
-            var z = ReadRssAsync(Resolution.SD);
-
-            await Task.WhenAll(x, y, z);
+            var x = ReadRss(Resolution.FullHD);
+            var y = ReadRss(Resolution.HD);
+            var z = ReadRss(Resolution.SD);
+            UniqueItems(x);
+            UniqueItems(y);
+            UniqueItems(z);
         }
 
-        private async Task<IReadOnlyCollection<SubsPleaseRssItem>> ReadRssAsync(Resolution resolution)
+        private IReadOnlyCollection<SubsPleaseRssItem> ReadRss(Resolution resolution)
         {
             string url = resolution switch
             {
@@ -82,16 +85,22 @@ namespace SubsPleaseBot.Services
                 string size = item.ElementExtensions.FirstOrDefault(ext => ext.OuterName == "size").GetObject<string>();
                 list.Add(new(title, season, episode, resolution, item.Links.FirstOrDefault()?.Uri.ToString(), item.PublishDate, size, item.Id));
             }
+
+            return list.AsReadOnly();
+        }
+
+        private IReadOnlyCollection<SubsPleaseRssItem> UniqueItems(IEnumerable<SubsPleaseRssItem> items)
+        {
             List<SubsPleaseRssItem> result;
             lock (uniqueLock)
             {
-                result = list.Where(x => !unique.Contains(x.Id)).ToList();
+                result = items.Where(x => !unique.Contains(x.Id)).ToList();
                 result.ForEach((e) =>
                 {
                     unique.Add(e.Id);
                 });
             }
-            return await Task.FromResult(result.AsReadOnly());
+            return result.AsReadOnly();
         }
     }
 }
